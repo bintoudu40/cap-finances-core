@@ -45,7 +45,7 @@ export const PaymentReceivedEmailTemplate: React.FC<
   preview,
 
   // # Company
-  companyName = 'Bigcapital, Inc.',
+  companyName = 'Cap Finances, Inc.',
   companyLogoUri,
 
   // # Colors

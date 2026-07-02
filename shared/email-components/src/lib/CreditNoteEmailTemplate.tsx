@@ -59,7 +59,7 @@ export const CreditNoteEmailTemplate: React.FC<
   preview,
 
   // # Company
-  companyName = 'Bigcapital, Inc.',
+  companyName = 'Cap Finances, Inc.',
   companyLogoUri,
 
   // # Colors

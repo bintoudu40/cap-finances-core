@@ -14,7 +14,7 @@ interface IRoleAbility {
 interface IDashboardBootMeta {
   abilities: IRoleAbility[];
   features: IFeatureAllItem[];
-  isBigcapitalCloud: boolean;
+  isCap FinancesCloud: boolean;
 }
 
 export class DashboardService {
@@ -40,7 +40,7 @@ export class DashboardService {
     return {
       abilities,
       features,
-      isBigcapitalCloud: this.configService.get('hostedOnBigcapitalCloud'),
+      isCap FinancesCloud: this.configService.get('hostedOnCap FinancesCloud'),
     };
   };
 
