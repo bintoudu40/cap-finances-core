@@ -1,7 +1,7 @@
 // @ts-nocheck
 import React from 'react';
-import { Icon } from '@/components/Icon';
+import { BigcapitalAlt } from '@/components/Icons/BigcapitalAlt';
 
 export function AuthCopyright() {
-  return <Icon width={122} height={22} icon={'bigcapital'} />;
+  return <BigcapitalAlt width={140} height={24} style={{ opacity: 0.5 }} />;
 }
