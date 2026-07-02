@@ -2,7 +2,7 @@ name: Build Cap Finances Images
 
 on:
   push:
-    branches: [main]
+    branches: [develop]
     tags: ['v*']
   workflow_dispatch:
 
@@ -40,7 +40,7 @@ jobs:
           tags: |
             type=ref,event=branch
             type=semver,pattern={{version}}
-            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=latest,enable=true
 
       - name: Build and push webapp
         uses: docker/build-push-action@v5
@@ -82,7 +82,7 @@ jobs:
           tags: |
             type=ref,event=branch
             type=semver,pattern={{version}}
-            type=raw,value=latest,enable={{is_default_branch}}
+            type=raw,value=latest,enable=true
 
       - name: Build and push server
         uses: docker/build-push-action@v5
