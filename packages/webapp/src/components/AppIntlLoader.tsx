@@ -14,6 +14,7 @@ import { useWatchImmediate } from '../hooks';
 import { withDashboardActions } from '@/containers/Dashboard/withDashboardActions';
 
 const SUPPORTED_LOCALES = [
+  { name: 'Français', value: 'fr' },
   { name: 'English', value: 'en' },
   { name: 'العربية', value: 'ar' },
 ];
