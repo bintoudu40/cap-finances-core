@@ -60,5 +60,5 @@ export class GetDashboardBootMetaResponseDto {
     description: 'Whether the app is running on Cap Finances Cloud',
     example: true,
   })
-  isCap FinancesCloud: boolean;
+  isBigcapitalCloud: boolean;
 }

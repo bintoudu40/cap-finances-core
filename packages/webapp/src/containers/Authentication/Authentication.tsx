@@ -12,7 +12,7 @@ import { AuthMetaBootProvider } from './AuthMetaBoot';
 
 import '@/style/pages/Authentication/Auth.scss';
 import { useIsDarkMode } from '@/hooks/useDarkMode';
-import { Cap FinancesAlt } from '@/components/Icons/Cap FinancesAlt';
+import { BigcapitalAlt } from '@/components/Icons/BigcapitalAlt';
 
 export function Authentication() {
   const isDarkMode = useIsDarkMode();
@@ -23,7 +23,7 @@ export function Authentication() {
         <AuthInsider>
           <AuthLogo>
             {isDarkMode ? (
-              <Cap FinancesAlt
+              <BigcapitalAlt
                 color={'rgba(255, 255, 255, 0.6)'}
                 height={37}
                 width={214}
