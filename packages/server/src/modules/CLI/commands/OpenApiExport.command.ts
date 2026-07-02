@@ -29,8 +29,8 @@ export class OpenApiExportCommand extends CommandRunner {
     app.use(new ClsMiddleware({}).use);
 
     const config = new DocumentBuilder()
-      .setTitle('Bigcapital')
-      .setDescription('Financial accounting software')
+      .setTitle('Cap Finances')
+      .setDescription('Logiciel de comptabilité')
       .setVersion('1.0')
       .build();
 

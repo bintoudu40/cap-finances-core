@@ -2,14 +2,15 @@
 import React from 'react';
 import moment from 'moment';
 import { Icon, If, Money } from '@/components';
+import { BigcapitalAlt } from '@/components/Icons/BigcapitalAlt';
 
 export const TemplateHeader = ({ defaultLabels }) => (
   <div className={'template__header'}>
     <div className={'template__header--title'}>
       <h1>{defaultLabels.name}</h1>
-      <p>info@bigcapital.ly </p>
+      <p>contact@cap-finances.com</p>
     </div>
-    <Icon icon="bigcapital" height={30} width={200} />
+    <BigcapitalAlt height={30} width={200} />
   </div>
 );
 
