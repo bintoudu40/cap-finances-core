@@ -90,7 +90,7 @@ export function useRolePermission(
     ...props,
     queryKey: rolesKeys.detail(role_id),
     queryFn: () => fetchRole(fetcher, role_id!),
-    enabled: role_id != null,
+    enabled: role_id != null && !Number.isNaN(role_id),
   });
 }
 
