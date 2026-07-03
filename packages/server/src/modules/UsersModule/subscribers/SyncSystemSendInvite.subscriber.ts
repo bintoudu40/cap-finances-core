@@ -40,15 +40,24 @@ export class SyncSystemSendInviteSubscriber {
     const authorizedUser = await this.tenancyContext.getSystemUser();
     const tenantId = authorizedUser.tenantId;
 
-    // Creates a new system user.
-    const systemUser = await this.systemUserModel.query().insert({
-      email: user.email,
-      active: user.active,
-      tenantId,
+    // Reuse existing system user if one already exists for this email,
+    // so re-inviting the same address never creates duplicate stub accounts.
+    let systemUser = await this.systemUserModel
+      .query()
+      .findOne({ email: user.email });
 
-      // Email should be verified since the user got the invite token through email.
-      verified: true,
-    });
+    if (!systemUser) {
+      systemUser = await this.systemUserModel.query().insert({
+        email: user.email,
+        active: user.active,
+        tenantId,
+        verified: true,
+      });
+    }
+
+    // Clear any previous invite tokens for this user before creating a new one.
+    await this.clearInviteTokensByUserId(tenantId, systemUser.id);
+
     // Creates a invite user token.
     const invite = await this.inviteModel.query().insert({
       email: user.email,
