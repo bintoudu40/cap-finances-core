@@ -4,6 +4,7 @@ import { CLASSES } from '@/constants/classes';
 import { withDashboardActions } from '@/containers/Dashboard/withDashboardActions';
 import { compose } from '@/utils';
 import { Spinner } from '@blueprintjs/core';
+import { useMediaQuery } from '@/hooks/useMediaQuery';
 
 import { withUniversalSearchActions } from '@/containers/UniversalSearch/withUniversalSearchActions';
 
@@ -66,9 +67,16 @@ function DashboardPage({
     };
   }, [name]);
 
+  // Auto-collapse the sidebar on narrow viewports (phones/small tablets) to
+  // free up content width, since nothing else in the layout adapts its width
+  // — the sidebar is otherwise always shown at full expanded width regardless
+  // of screen size. Pages that explicitly request a collapsed sidebar
+  // (sidebarExpand={false}) keep that regardless of viewport.
+  const isNarrowViewport = useMediaQuery('(max-width: 768px)');
+
   useEffect(() => {
-    toggleSidebarExpand(sidebarExpand);
-  }, [toggleSidebarExpand, sidebarExpand]);
+    toggleSidebarExpand(sidebarExpand && !isNarrowViewport);
+  }, [toggleSidebarExpand, sidebarExpand, isNarrowViewport]);
 
   useEffect(() => {
     if (defaultSearchResource) {
