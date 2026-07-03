@@ -14,6 +14,7 @@ import { SyncSystemSendInviteSubscriber } from './subscribers/SyncSystemSendInvi
 import { SyncTenantAcceptInviteSubscriber } from './subscribers/SyncTenantAcceptInvite.subscriber';
 import { UsersController } from './Users.controller';
 import { UserInvite } from './models/InviteUser.model';
+import { UserTenant } from '../System/models/UserTenant.model';
 import { TenancyModule } from '../Tenancy/Tenancy.module';
 import { UsersApplication } from './Users.application';
 import { GetUsersService } from './queries/GetUsers.service';
@@ -29,7 +30,7 @@ import { SendInviteUsersMailMessage } from './commands/SendInviteUsersMailMessag
 import { SendBulkInvitesService } from './commands/SendBulkInvites.service';
 import { MailModule } from '../Mail/Mail.module';
 
-const models = [InjectSystemModel(UserInvite)];
+const models = [InjectSystemModel(UserInvite), InjectSystemModel(UserTenant)];
 
 @Module({
   imports: [

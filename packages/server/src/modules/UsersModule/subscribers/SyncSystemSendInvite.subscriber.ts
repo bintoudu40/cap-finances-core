@@ -10,6 +10,7 @@ import { TenantModelProxy } from '@/modules/System/models/TenantBaseModel';
 import { TenantUser } from '@/modules/Tenancy/TenancyModels/models/TenantUser.model';
 import { UserInvite } from '../models/InviteUser.model';
 import { SystemUser } from '@/modules/System/models/SystemUser';
+import { UserTenant } from '@/modules/System/models/UserTenant.model';
 import { TenancyContext } from '@/modules/Tenancy/TenancyContext.service';
 
 @Injectable()
@@ -23,6 +24,10 @@ export class SyncSystemSendInviteSubscriber {
 
     @Inject(UserInvite.name)
     private readonly inviteModel: typeof UserInvite,
+
+    @Inject(UserTenant.name)
+    private readonly userTenantModel: typeof UserTenant,
+
     private readonly eventEmitter: EventEmitter2,
     private readonly tenancyContext: TenancyContext,
   ) {}
@@ -52,6 +57,19 @@ export class SyncSystemSendInviteSubscriber {
         active: user.active,
         tenantId,
         verified: true,
+      });
+    }
+
+    // Ensure the system user has a membership row for this tenant so
+    // resolveSigninTenant() can find them after they accept the invite.
+    const existingMembership = await this.userTenantModel
+      .query()
+      .findOne({ userId: systemUser.id, tenantId });
+    if (!existingMembership) {
+      await this.userTenantModel.query().insert({
+        userId: systemUser.id,
+        tenantId,
+        role: 'member',
       });
     }
 
