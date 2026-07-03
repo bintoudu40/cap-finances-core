@@ -28,9 +28,12 @@ export class AuthenticationMailMesssages {
       .setTo(user.email)
       .setAttachments([
         {
-          filename: 'bigcapital.png',
-          path: path.join(global.__static_dirname, `/images/bigcapital.png`),
-          cid: 'bigcapital_logo',
+          filename: 'cap-finances-badge-256.png',
+          path: path.join(
+            global.__static_dirname,
+            `/images/cap-finances-badge-256.png`,
+          ),
+          cid: 'cap_finances_logo',
         },
       ])
       .setData({
@@ -63,9 +66,12 @@ export class AuthenticationMailMesssages {
       .setTo(email)
       .setAttachments([
         {
-          filename: 'bigcapital.png',
-          path: path.join(global.__static_dirname, `/images/bigcapital.png`),
-          cid: 'bigcapital_logo',
+          filename: 'cap-finances-badge-256.png',
+          path: path.join(
+            global.__static_dirname,
+            `/images/cap-finances-badge-256.png`,
+          ),
+          cid: 'cap_finances_logo',
         },
       ])
       .setData({ verifyUrl, fullName });
