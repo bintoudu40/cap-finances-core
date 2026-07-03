@@ -83,6 +83,10 @@ $ns: bp4;
 
   --color-app-body: #fff;
 
+  // Scrollbars (always-visible, themed — overrides OS overlay-scrollbar behavior).
+  --color-scrollbar-thumb: rgba(0, 0, 0, 0.25);
+  --color-scrollbar-thumb-hover: rgba(0, 0, 0, 0.4);
+
   // Splash screen.
   --color-splash-screen-background: #fff;
 
@@ -399,6 +403,10 @@ body.bp4-dark  {
 
   // App
   --color-app-body: var(--color-dark-gray1);
+
+  // Scrollbars (always-visible, themed — overrides OS overlay-scrollbar behavior).
+  --color-scrollbar-thumb: rgba(255, 255, 255, 0.2);
+  --color-scrollbar-thumb-hover: rgba(255, 255, 255, 0.35);
 
   // Splash screen.
   --color-splash-screen-background: #fff;

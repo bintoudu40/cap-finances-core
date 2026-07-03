@@ -47,19 +47,46 @@ body {
   background-color: var(--color-app-body);
   overflow: hidden;
 }
+
+// Force always-visible, app-themed scrollbars everywhere instead of relying on
+// the OS's overlay-scrollbar behavior (e.g. macOS "show scrollbars: when scrolling"),
+// which made scrollable areas look empty/unresponsive until actively scrolled.
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-scrollbar-thumb) transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--color-scrollbar-thumb);
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-scrollbar-thumb-hover);
+}
 // Auth pages need normal scroll — the dashboard uses overflow:hidden for its own panels
 body.authentication {
   overflow: auto;
 }
 // App
+//
+// No hard min-width floor: `body { overflow: hidden }` above makes the *page*
+// itself non-scrollable (not just the body element, since html has no overflow
+// of its own — the UA propagates body's overflow to the viewport). A fixed
+// min-width here used to force the shell wider than the viewport on any window
+// between ~769–1100px, and that excess was completely unreachable — no
+// scrollbar, native or custom, could ever reach it. Individual sections handle
+// their own reflow (card grids wrap via flex-wrap, tables scroll horizontally
+// within their own container), so the shell just needs to track the viewport.
 .App {
-  min-width: 1100px;
   min-height: 100vh;
-}
-@media (max-width: 768px) {
-  .App {
-    min-width: 0;
-  }
 }
 // =======
 
