@@ -22,15 +22,11 @@ export function Authentication() {
       <AuthPage>
         <AuthInsider>
           <AuthLogo>
-            {isDarkMode ? (
-              <BigcapitalAlt
-                color={'rgba(255, 255, 255, 0.6)'}
-                height={37}
-                width={214}
-              />
-            ) : (
-              <Icon icon="bigcapital" height={37} width={214} />
-            )}
+            <BigcapitalAlt
+              color={isDarkMode ? 'rgba(255, 255, 255, 0.6)' : undefined}
+              height={37}
+              width={214}
+            />
           </AuthLogo>
 
           <AuthMetaBootProvider>
@@ -76,12 +72,20 @@ function AuthenticationRoutes() {
   );
 }
 
-const AuthPage = styled.div``;
+const AuthPage = styled.div`
+  min-height: 100vh;
+  padding: 0 16px;
+  box-sizing: border-box;
+`;
 const AuthInsider = styled.div`
   width: 384px;
+  max-width: 100%;
   margin: 0 auto;
   margin-bottom: 40px;
-  padding-top: 80px;
+  padding-top: 60px;
+  @media (max-width: 480px) {
+    padding-top: 32px;
+  }
 `;
 
 const AuthLogo = styled.div`

@@ -47,10 +47,19 @@ body {
   background-color: var(--color-app-body);
   overflow: hidden;
 }
+// Auth pages need normal scroll — the dashboard uses overflow:hidden for its own panels
+body.authentication {
+  overflow: auto;
+}
 // App
 .App {
   min-width: 1100px;
   min-height: 100vh;
+}
+@media (max-width: 768px) {
+  .App {
+    min-width: 0;
+  }
 }
 // =======
 
