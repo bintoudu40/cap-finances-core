@@ -105,6 +105,7 @@
   "email_address": "Email Address",
   "register": "Register",
   "password_successfully_updated": "The Password for your account was successfully updated.",
+  "reset_password_link_expired": "This password reset link has expired. Please request a new one.",
   "choose_a_new_password": "Choose a new password",
   "you_remembered_your_password": "You remembered your password ?",
   "new_password": "New Password",

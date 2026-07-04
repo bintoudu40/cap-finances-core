@@ -46,6 +46,7 @@
   "email_address": "Adresse e-mail",
   "register": "S'enregistrer",
   "password_successfully_updated": "Le mot de passe de votre compte a été mis à jour avec succès.",
+  "reset_password_link_expired": "Ce lien de réinitialisation a expiré. Veuillez en demander un nouveau.",
   "choose_a_new_password": "Choisissez un nouveau mot de passe",
   "you_remembered_your_password": "Vous vous souvenez de votre mot de passe ?",
   "new_password": "Nouveau mot de passe",

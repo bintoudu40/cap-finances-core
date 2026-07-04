@@ -44,14 +44,27 @@ export function ResetPassword() {
         history.push('/auth/login');
         setSubmitting(false);
       })
-      .catch(({ data: { errors } }) => {
-        if (errors.find((e) => e.type === 'TOKEN_INVALID')) {
+      .catch((error) => {
+        const errors = error?.data?.errors ?? [];
+
+        if (errors.find((e) => e.type === 'TOKEN_EXPIRED')) {
+          AppToaster.show({
+            message: intl.get('reset_password_link_expired'),
+            intent: Intent.DANGER,
+            position: Position.BOTTOM,
+          });
+          history.push('/auth/send_reset_password');
+        } else {
+          // TOKEN_INVALID, USER_NOT_FOUND, or anything unexpected — still
+          // surface a message rather than silently doing nothing.
           AppToaster.show({
             message: intl.get('an_unexpected_error_occurred'),
             intent: Intent.DANGER,
             position: Position.BOTTOM,
           });
-          history.push('/auth/login');
+          if (errors.find((e) => e.type === 'TOKEN_INVALID')) {
+            history.push('/auth/login');
+          }
         }
         setSubmitting(false);
       });
