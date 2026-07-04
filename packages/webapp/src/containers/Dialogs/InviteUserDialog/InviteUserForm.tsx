@@ -12,7 +12,7 @@ import { InviteUserFormSchema } from './InviteUserDialog.schema';
 import { InviteUserFormContent } from './InviteUserFormContent';
 import { useInviteUserFormContext } from './InviteUserFormProvider';
 
-import { transformApiErrors } from './utils';
+import { transformApiErrors, getNonFieldErrorMessage } from './utils';
 
 import { compose, objectKeysTransform } from '@/utils';
 
@@ -60,8 +60,12 @@ function InviteUserFormInner({
       } = error;
 
       const errorsTransformed = transformApiErrors(errors);
-
       setErrors({ ...errorsTransformed });
+
+      const nonFieldMessage = getNonFieldErrorMessage(errors);
+      if (nonFieldMessage) {
+        AppToaster.show({ message: nonFieldMessage, intent: Intent.DANGER });
+      }
       setSubmitting(false);
     };
     inviteUserMutate(form).then(onSuccess).catch(onError);

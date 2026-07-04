@@ -1,4 +1,5 @@
 import { Inject, Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import * as uniqid from 'uniqid';
 import * as moment from 'moment';
 import {
@@ -22,6 +23,7 @@ export class InviteTenantUserService {
   constructor(
     private readonly eventEmitter: EventEmitter2,
     private readonly tenancyContext: TenancyContext,
+    private readonly configService: ConfigService,
 
     @Inject(TenantUser.name)
     private readonly tenantUserModel: TenantModelProxy<typeof TenantUser>,
@@ -44,6 +46,9 @@ export class InviteTenantUserService {
 
     // Validates the given email not exists on the storage.
     await this.validateUserEmailNotExists(sendInviteDTO.email);
+
+    // Validates the tenant hasn't reached its team seat limit, if one is set.
+    await this.validateSeatLimitNotReached();
 
     // Generates a new invite token.
     const inviteToken = uniqid();
@@ -156,6 +161,22 @@ export class InviteTenantUserService {
 
     if (foundUser) {
       throw new ServiceError(ERRORS.EMAIL_EXISTS);
+    }
+  }
+
+  /**
+   * Throws error if the tenant's team is already at its configured seat
+   * limit (set per-client via `bchost seats <client> <n>`). No limit is
+   * configured by default (unlimited).
+   * @throws {ServiceError}
+   */
+  private async validateSeatLimitNotReached(): Promise<void> {
+    const maxSeats = this.configService.get<number | null>('team.maxSeats');
+    if (!maxSeats) return;
+
+    const currentSeats = await this.tenantUserModel().query().resultSize();
+    if (currentSeats >= maxSeats) {
+      throw new ServiceError(ERRORS.SEAT_LIMIT_REACHED);
     }
   }
 }

@@ -13,6 +13,7 @@ export const ERRORS = {
   EMAIL_EXISTS: 'EMAIL_EXISTS',
   EMAIL_NOT_EXISTS: 'EMAIL_NOT_EXISTS',
   USER_RECENTLY_INVITED: 'USER_RECENTLY_INVITED',
+  SEAT_LIMIT_REACHED: 'SEAT_LIMIT_REACHED',
 };
 
 export const SendInviteUserMailQueue = 'SendInviteUserMailQueue';

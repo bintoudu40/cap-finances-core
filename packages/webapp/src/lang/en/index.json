@@ -822,6 +822,7 @@
   "posting_date": "Posting date",
   "customer": "Customer",
   "email_is_already_used": "The email is already used.",
+  "team_seat_limit_reached": "You've reached your plan's team member limit. Contact us to increase it.",
   "the_item_categories_has_been_deleted_successfully": "The item categories have been deleted successfully .",
   "receivable_accounts_should_assign_with_customers": "Receivable accounts should assign with customers.",
   "make_journal.errors.should_add_accounts_in_same_currency_or_base_currency": "You can only add accounts that have the same selected currency or base currency.",

@@ -742,6 +742,7 @@
   "posting_date": "Date de comptabilisation",
   "customer": "Client",
   "email_is_already_used": "L'adresse e-mail est déjà utilisée.",
+  "team_seat_limit_reached": "Limite de membres atteinte pour votre forfait. Contactez-nous pour l'augmenter.",
   "the_item_categories_has_been_deleted_successfully": "Les catégories d'articles ont été supprimées avec succès .",
   "receivable_accounts_should_assign_with_customers": "Les comptes clients doivent être associés à des clients.",
   "make_journal.errors.should_add_accounts_in_same_currency_or_base_currency": "Vous pouvez uniquement ajouter des comptes ayant la même devise sélectionnée ou la devise de base.",
