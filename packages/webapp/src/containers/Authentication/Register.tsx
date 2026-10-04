@@ -37,20 +37,19 @@ export function RegisterUserForm() {
   const handleSubmit = (values, { setSubmitting, setErrors }) => {
     authRegisterMutate(values)
       .then(() => {
-        authLoginMutate({
+        return authLoginMutate({
           email: values.email,
           password: values.password,
-        }).catch(({ data: { errors } }) => {
+        }).catch(() => {
           AppToaster.show({
             message: intl.get('something_wentwrong'),
             intent: Intent.SUCCESS,
           });
+          setSubmitting(false);
         });
       })
-      .catch(({ response }) => {
-        const {
-          data: { errors },
-        } = response;
+      .catch((error) => {
+        const errors = error?.response?.data?.errors ?? [];
 
         const formErrors = transformRegisterErrorsToForm(errors);
         const toastMessages = transformRegisterToastMessages(errors);
