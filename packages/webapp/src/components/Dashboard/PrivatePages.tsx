@@ -3,6 +3,7 @@ import React, { lazy } from 'react';
 import { Switch, Route } from 'react-router';
 
 import Dashboard from '@/components/Dashboard/Dashboard';
+import AssistantChatbot from '@/components/Chatbot/AssistantChatbot';
 
 import { PrivatePagesProvider } from './PrivatePagesProvider';
 import EnsureOrganizationIsReady from '../Guards/EnsureOrganizationIsReady';
@@ -29,6 +30,7 @@ export default function DashboardPrivatePages() {
             <Route path="/">
               <EnsureOrganizationIsReady>
                 <Dashboard />
+                <AssistantChatbot />
               </EnsureOrganizationIsReady>
             </Route>
           </Switch>
