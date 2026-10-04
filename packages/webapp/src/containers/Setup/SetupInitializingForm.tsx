@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ProgressBar, Intent } from '@blueprintjs/core';
 import { x } from '@xstyled/emotion';
 import { css } from '@emotion/css';
